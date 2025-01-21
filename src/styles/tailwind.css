@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		/* Thank for https://www.tints.dev/ */
+
+		/* warning primary base #258eb5 */
+		--color-primary-default: 37, 142, 181;
+		--color-primary-50: 239, 249, 252;
+		--color-primary-100: 214, 240, 247;
+		--color-primary-200: 178, 225, 239;
+		--color-primary-300: 125, 202, 227;
+		--color-primary-400: 65, 170, 207;
+		--color-primary-500: 37, 142, 181;
+		--color-primary-600: 34, 114, 152;
+		--color-primary-700: 34, 94, 124;
+		--color-primary-800: 35, 77, 103;
+		--color-primary-900: 34, 66, 87;
+		--color-primary-950: 17, 42, 59;
+
+		/* Accent Colors */
+		/* error color base #ff494e */
+		--color-error-default: 255, 73, 78;
+		--color-error-50: 255, 241, 241;
+		--color-error-100: 255, 223, 224;
+		--color-error-200: 255, 197, 199;
+		--color-error-300: 255, 157, 160;
+		--color-error-400: 255, 100, 104;
+		--color-error-500: 255, 73, 78;
+		--color-error-600: 237, 21, 27;
+		--color-error-700: 200, 13, 18;
+		--color-error-800: 165, 15, 19;
+		--color-error-900: 136, 20, 23;
+		--color-error-950: 75, 4, 6;
+
+		/* success color base #2fce00 */
+		--color-success-default: 47, 206, 0;
+		--color-success-50: 238, 255, 228;
+		--color-success-100: 216, 255, 197;
+		--color-success-200: 179, 255, 146;
+		--color-success-300: 130, 255, 83;
+		--color-success-400: 86, 251, 32;
+		--color-success-500: 47, 206, 0;
+		--color-success-600: 36, 181, 0;
+		--color-success-700: 28, 137, 2;
+		--color-success-800: 26, 108, 8;
+		--color-success-900: 25, 91, 12;
+		--color-success-950: 7, 51, 0;
+
+		/* warning color base #fea800 */
+		--color-warning-default: 254, 168, 0;
+		--color-warning-50: 255, 253, 234;
+		--color-warning-100: 255, 246, 197;
+		--color-warning-200: 255, 237, 133;
+		--color-warning-300: 255, 221, 70;
+		--color-warning-400: 255, 203, 27;
+		--color-warning-500: 254, 168, 0;
+		--color-warning-600: 226, 128, 0;
+		--color-warning-700: 187, 88, 2;
+		--color-warning-800: 152, 68, 8;
+		--color-warning-900: 124, 56, 11;
+		--color-warning-950: 72, 27, 0;
+
+		/* info color base #40a9ff */
+		--color-info-default: 64, 169, 255;
+		--color-info-50: 238, 249, 255;
+		--color-info-100: 217, 240, 255;
+		--color-info-200: 188, 230, 255;
+		--color-info-300: 142, 216, 255;
+		--color-info-400: 89, 192, 255;
+		--color-info-500: 64, 169, 255;
+		--color-info-600: 27, 132, 245;
+		--color-info-700: 20, 109, 225;
+		--color-info-800: 23, 87, 182;
+		--color-info-900: 25, 75, 143;
+		--color-info-950: 20, 46, 87;
+
+		/* https://v3.tailwindcss.com/docs/customizing-colors - gray, slate, neutral, zinc, stone tôi chưa đủ kiến thức về design nên hiện tại tôi cho giống neutral */
+		/* gray (tôi xem nó như neutral) color base #737373 - only reference like color-text, color-disabled, color-border,... */
+		--color-gray-default: 115, 115, 115;
+		--color-gray-50: 246, 246, 246;
+		--color-gray-100: 231, 231, 231;
+		--color-gray-200: 209, 209, 209;
+		--color-gray-300: 176, 176, 176;
+		--color-gray-400: 136, 136, 136;
+		--color-gray-500: 115, 115, 115;
+		--color-gray-600: 93, 93, 93;
+		--color-gray-700: 79, 79, 79;
+		--color-gray-800: 69, 69, 69;
+		--color-gray-900: 61, 61, 61;
+		--color-gray-950: 38, 38, 38;
+
+		/* text color reference by neutral color */
+		--color-text-default: 61, 61, 61;
+		--color-text-400: 136, 136, 136;
+		--color-text-500: 115, 115, 115;
+		--color-text-700: 79, 79, 79;
+		--color-text-900: 61, 61, 61;
+
+		/* disabled color reference by neutral color */
+		--color-disabled-default: 176, 176, 176;
+		--color-disabled-100: 231, 231, 231;
+		--color-disabled-200: 209, 209, 209;
+		--color-disabled-300: 176, 176, 176;
+
+		/* border color reference by neutral color */
+		--color-border-default: 115, 115, 115;
+		--color-border-200: 209, 209, 209;
+		--color-border-500: 115, 115, 115;
+		--color-border-600: 93, 93, 93;
+
+		/* bg color reference by neutral color */
+		--color-bg-default: 246, 246, 246;
+		--color-bg-50: 246, 246, 246;
+		--color-bg-100: 231, 231, 231;
+	}
+
+	/* Dark theme colors */
+	* {
+		@apply transition-colors duration-300 ease-in-out;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root {
+			/* Trong dark theme chỉ cần đảo lại 1 số màu liên quan chủ đề tối như: neutral, slate, gray, zinc, stone */
+		}
+	}
+
+	/* Font family */
+	html {
+		font-family: 'Be Vietnam Pro', sans-serif;
+	}
+}
+
+@layer components {
+	.mixin-text-white {
+		@apply text-white;
+	}
+}
