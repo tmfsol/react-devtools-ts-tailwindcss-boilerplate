@@ -1,7 +1,5 @@
-import containerQueries from '@tailwindcss/container-queries';
 import fluid, { extract } from 'fluid-tailwind';
 import debugScreens from 'tailwindcss-debug-screens';
-import motion from 'tailwindcss-motion';
 
 const tailwindConfig = {
 	content: {
@@ -165,33 +163,15 @@ const tailwindConfig = {
 		screens: {
 			// https://fluid.tw/#limitations, 1rem = 16px, convert px to rem follow concept of fluid-tailwind
 			// import {  screens } from 'fluid-tailwind';
-			xs: '30rem', // 480px
 			sm: '40rem', // 640px
 			md: '48rem', // 768px
 			lg: '64rem', // 1024px
 			xl: '80rem', // 1280px
 			'2xl': '96rem', // 1536px
 			'3xl': '120rem' // 1920px
-		},
-
-		containers: {
-			// https://github.com/tailwindlabs/tailwindcss-container-queries?tab=readme-ov-file#configuration
-			xs: '20rem', // (min-width: 20rem /* 320px */)
-			sm: '24rem', // (min-width: 24rem /* 384px */)
-			md: '28rem', // (min-width: 28rem /* 448px */)
-			lg: '32rem', // (min-width: 32rem /* 512px */)
-			xxl: '36rem', // (min-width: 36rem /* 576px */)
-			'2xl': '42rem', // (min-width: 42rem /* 672px */)
-			'3xl': '48rem', // (min-width: 48rem /* 768px */)
-			'4xl': '56rem', // (min-width: 56rem /* 896px */)
-			'5xl': '64rem', // (min-width: 64rem /* 1024px */)
-			'6xl': '72rem', // (min-width: 72rem /* 1152px */)
-			'7xl': '80rem' // (min-width: 80rem /* 1280px */)
-		},
-
-		extends: {}
+		}
 	},
-	plugins: [fluid, motion, debugScreens, containerQueries]
+	plugins: [fluid, debugScreens]
 };
 
 export default tailwindConfig;

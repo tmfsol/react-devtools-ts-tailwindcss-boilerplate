@@ -1,0 +1,153 @@
+@use 'sass:math';
+@use 'sass:map';
+
+$debug-layout-row: 1px dashed orange !default;
+$debug-layout-col: 1px dashed #ccc !default;
+
+// Thanks for https://v3.tailwindcss.com/docs/responsive-design#overview
+// Thanks for https://getbootstrap.com/docs/5.3/layout/containers/
+$grid-breakpoints: (
+	/* 0px */ xs: 0,
+	/* 640px */ sm: 40rem,
+	/* 768px */ md: 48rem,
+	/* 1024px */ lg: 64rem,
+	/* 1280px */ xl: 80rem,
+	/* 1536px */ 2xl: 96rem,
+	/* 1920px */ 3xl: 120rem
+) !default;
+$container-max-widths: (
+	/* 540px */ sm: 33.75rem,
+	/* 720px */ md: 45rem,
+	/* 960px */ lg: 60rem,
+	/* 1140px */ xl: 71.25rem,
+	/* 1320px */ 2xl: 82.5rem,
+	/* 1500px */ 3xl: 93.75rem
+) !default;
+$grid-columns: 12 !default;
+$grid-gutter-width: 1.5rem !default;
+$gutters: (
+	0: 0,
+	1: 0.25,
+	2: 0.5,
+	3: 1,
+	4: 1.5,
+	5: 3
+);
+$displays: none, inline, block, inline-block, flex, inline-flex, grid;
+
+%gutter-padding {
+	padding-left: calc(var(--grid-gutter-x) * 0.5);
+	padding-right: calc(var(--grid-gutter-x) * 0.5);
+}
+
+.container-fluid {
+	--grid-gutter-x: #{$grid-gutter-width};
+	--grid-gutter-y: 0;
+
+	@extend %gutter-padding;
+
+	width: 100%;
+}
+
+.container {
+	@extend .container-fluid;
+
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+
+	margin-top: calc(-1 * var(--grid-gutter-y));
+	margin-left: calc(-1 * var(--grid-gutter-x) * 0.5);
+	margin-right: calc(-1 * var(--grid-gutter-x) * 0.5);
+
+	> * {
+		@extend %gutter-padding;
+
+		margin-top: var(--grid-gutter-y);
+	}
+}
+
+.row.debug-layout {
+	border: $debug-layout-row;
+
+	> [class*='col'] {
+		border: $debug-layout-col;
+	}
+}
+
+.col {
+	flex: 1 0;
+}
+
+@mixin make-media-query($breakpoint, $dimension) {
+	@if $breakpoint == 'xs' {
+		@content;
+	} @else {
+		@media (min-width: $dimension) {
+			@content;
+		}
+	}
+}
+
+@mixin make-row-cols($infix) {
+	@for $i from 1 through $grid-columns * 0.5 {
+		.row-cols#{$infix}-#{$i} > * {
+			flex: 0 0 auto;
+			width: math.div(100%, $i);
+		}
+	}
+}
+
+@mixin make-col($infix) {
+	@for $i from 1 through $grid-columns {
+		.col#{$infix}-#{$i} {
+			flex: 0 0 auto;
+			width: math.div(100%, $grid-columns) * $i;
+		}
+	}
+}
+
+@mixin make-offset($infix) {
+	@for $i from 0 to $grid-columns {
+		.offset#{$infix}-#{$i} {
+			margin-left: if($i == 0, 0, math.div(100%, $grid-columns) * $i);
+		}
+	}
+}
+
+@mixin make-gutter($infix) {
+	@each $i, $ratio in $gutters {
+		.gy#{$infix}-#{$i} {
+			--grid-gutter-y: #{$ratio * $grid-gutter-width};
+		}
+	}
+}
+
+@mixin make-display($infix) {
+	@each $display in $displays {
+		.d#{$infix}-#{$display} {
+			display: $display !important;
+		}
+	}
+}
+
+@each $breakpoint, $dimension in $grid-breakpoints {
+	$max-width: map.get($container-max-widths, $breakpoint);
+	$infix: if($breakpoint == 'xs', '', '-#{$breakpoint}');
+
+	@include make-media-query($breakpoint, $dimension) {
+		.container {
+			max-width: $max-width;
+		}
+
+		@include make-row-cols($infix);
+		@include make-col($infix);
+		@include make-offset($infix);
+		@include make-gutter($infix);
+		@include make-display($infix);
+	}
+}

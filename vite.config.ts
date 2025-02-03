@@ -5,6 +5,25 @@ import { defineConfig } from 'vite';
 
 // https://vite.dev/config/
 const viteConfig = defineConfig({
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: 'modern-compiler',
+
+				additionalData: (content, filename) => {
+					const excludedFiles = ['global.scss'];
+					const onlyFilename = filename.split('/').pop();
+
+					if (onlyFilename && excludedFiles.includes(onlyFilename)) {
+						return content;
+					}
+
+					return `@use "~/styles/abstracts" as *; ${content}`;
+				}
+			}
+		}
+	},
+
 	resolve: {
 		alias: [
 			{

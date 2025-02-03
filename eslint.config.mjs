@@ -82,11 +82,13 @@ const eslintConfig = tseslint.config(
 					pathGroups: [
 						{
 							pattern: '~/**',
-							group: 'internal'
+							group: 'internal',
+							position: 'before'
 						}
 					],
 
-					groups: ['builtin', 'external', ['internal', 'parent', 'sibling', 'index'], ['object', 'unknown', 'type']]
+					groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index'], ['object', 'unknown', 'type']],
+					pathGroupsExcludedImportTypes: ['builtin']
 				}
 			],
 

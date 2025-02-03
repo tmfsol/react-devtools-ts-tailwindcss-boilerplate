@@ -1,0 +1,124 @@
+/* Reference and custom, thanks for https://www.joshwcomeau.com/css/custom-css-reset/, http://meyerweb.com/eric/tools/css/reset/ */
+
+/* 1. Sử dụng border-box cho box-sizing, cần hiểu rõ box model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Đặt lại margin, padding, cũng cần hiểu rõ box model */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/* 3. Improve root tag */
+html {
+	line-height: 1.5;
+	font-family: system-ui, sans-serif;
+	text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+/* 4. Tối ưu hoá text-rendering */
+body {
+	min-height: 100vh;
+	text-rendering: optimizeSpeed;
+	scroll-behavior: smooth;
+}
+
+/* 5. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font: inherit;
+	overflow-wrap: break-word;
+}
+
+/* 6. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/* 7. Đặt lại list styles */
+ol,
+ul {
+	list-style: none;
+}
+
+/* 8. Đặt lại link */
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/* 9. Đảm bảo các element media không vượt quá phần tử cha */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 10. Đảm bảo table không vỡ layout */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* 11. Đảm bảo inherit font cho các element form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 12. Đặt lại button */
+button {
+	all: unset;
+	cursor: pointer;
+}
+
+/* 13. Chỉ cho phép textarea resize theo chiều dọc để đảm bảo không vỡ layout */
+textarea {
+	resize: vertical;
+}
+
+/* 14. Đảm bảo font monospace cho các thẻ code */
+code,
+kbd,
+pre,
+samp {
+	font-family: monospace, monospace;
+	font-size: 1em;
+}
+
+/* 15. Ẩn các element không cần thiết */
+template,
+[hidden] {
+	display: none;
+}
+
+/*
+  16. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
