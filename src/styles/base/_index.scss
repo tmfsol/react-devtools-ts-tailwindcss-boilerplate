@@ -1,5 +1,4 @@
 @forward './reset';
-@forward './tailwind';
 @forward './grid' with (
 	$grid-breakpoints: (
 		/* 0px */ xs: 0,
@@ -21,4 +20,5 @@
 	$grid-columns: 12,
 	$grid-gutter-width: 1.5rem
 );
+@forward './tailwind';
 @forward './base';

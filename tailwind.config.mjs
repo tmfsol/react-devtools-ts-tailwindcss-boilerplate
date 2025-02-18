@@ -8,6 +8,11 @@ const tailwindConfig = {
 	},
 	darkMode: 'class',
 
+	corePlugins: {
+		preflight: false
+	},
+	important: '#root',
+
 	theme: {
 		fontFamily: {
 			sans: ['"Be Vietnam Pro"', 'sans-serif']
